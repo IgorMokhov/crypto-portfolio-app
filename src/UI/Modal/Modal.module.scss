@@ -1,0 +1,54 @@
+@use '../../styles/variables.scss' as variables;
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInBackdrop 0.3s ease-in-out forwards;
+}
+
+.modal {
+  width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: variables.$btn-color;
+  animation: fadeInModal 0.3s ease-in-out forwards;
+
+  &_input {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    background-color: variables.$btn-color;
+    color: variables.$font-color;
+  }
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
