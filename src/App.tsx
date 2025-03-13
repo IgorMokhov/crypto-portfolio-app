@@ -1,5 +1,13 @@
+import { Header } from './components/Header/Header';
+import { Container } from './UI/Container/Container';
 import './App.scss';
+import { Portfolio } from './components/Portfolio/Portfolio';
 
 export const App = () => {
-  return <h1>Crypto Portfolio</h1>;
+  return (
+    <Container>
+      <Header />
+      <Portfolio />
+    </Container>
+  );
 };
