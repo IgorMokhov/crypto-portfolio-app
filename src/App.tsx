@@ -7,7 +7,9 @@ export const App = () => {
   return (
     <Container>
       <Header />
-      <Portfolio />
+      <main>
+        <Portfolio />
+      </main>
     </Container>
   );
 };
