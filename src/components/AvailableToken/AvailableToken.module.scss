@@ -1,0 +1,17 @@
+@use '../../styles/variables.scss' as variables;
+
+.token {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &_change {
+    color: variables.$green-color;
+
+    &.negative {
+      color: variables.$red-color;
+    }
+  }
+}
