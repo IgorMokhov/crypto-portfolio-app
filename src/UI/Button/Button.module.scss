@@ -1,7 +1,8 @@
 @use '../../styles/variables.scss' as variables;
 
 .button {
-  padding: 18px 24px;
+  height: 50px;
+  width: 155px;
   font-size: 18px;
   background-color: variables.$bg-btn-color;
   color: variables.$btn-color;
