@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Input } from '../../UI/Input/Input';
-import styles from './TokenSelector.module.scss';
 import { Button } from '../../UI/Button/Button';
-import { AvailableTokenList } from '../AvailableTokenList/AvailableTokenList';
+import { AvailableCurrencyList } from '../AvailableCurrencyList/AvailableCurrencyList';
 import { useAppDispatch } from '../../redux/hooks';
 import { closeModal } from '../../redux/slices/modal/modalSlice';
+import styles from './CurrencySelector.module.scss';
 
-interface ITokenSelectorProps {}
-
-export const TokenSelector = ({}: ITokenSelectorProps) => {
+export const CurrencySelector = () => {
   const [search, setSearch] = useState<string>('');
   const [quantity, setQuantity] = useState<string>('');
 
@@ -24,7 +22,7 @@ export const TokenSelector = ({}: ITokenSelectorProps) => {
   };
 
   return (
-    <div className={styles.tokenSelector}>
+    <div className={styles.currencySelector}>
       <Input
         value={search}
         onChange={handleSearchChange}
@@ -32,7 +30,7 @@ export const TokenSelector = ({}: ITokenSelectorProps) => {
         placeholder="Поиск валюты"
       />
 
-      <AvailableTokenList />
+      <AvailableCurrencyList />
 
       {true && (
         <>
@@ -42,7 +40,7 @@ export const TokenSelector = ({}: ITokenSelectorProps) => {
             type="text"
             placeholder="Количество"
           />
-          <div className={styles.tokenSelector_actions}>
+          <div className={styles.currencySelector_actions}>
             <Button>добавить</Button>
             <Button onClick={() => dispatch(closeModal())}>отмена</Button>
           </div>
