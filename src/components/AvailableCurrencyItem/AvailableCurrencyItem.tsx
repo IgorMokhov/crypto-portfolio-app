@@ -3,13 +3,13 @@ import styles from './AvailableCurrencyItem.module.scss';
 interface IAvailableCurrencyItemProps {
   name: string;
   price: number;
-  change: number;
+  priceChange: number;
 }
 
 export const AvailableCurrencyItem = ({
   name,
   price,
-  change,
+  priceChange,
 }: IAvailableCurrencyItemProps) => {
   return (
     <li className={styles.currency}>
@@ -17,11 +17,11 @@ export const AvailableCurrencyItem = ({
       <span>${price}</span>
       <span
         className={`${styles.currency_change} ${
-          change < 0 ? styles.negative : ''
+          priceChange < 0 ? styles.negative : ''
         }`}
       >
-        {change > 0 ? '+' : ''}
-        {change}%
+        {priceChange > 0 ? '+' : ''}
+        {priceChange}%
       </span>
     </li>
   );
