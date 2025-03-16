@@ -1,4 +1,9 @@
 .currencySelector {
+  &_selected {
+    text-align: center;
+    padding: 10px 0;
+  }
+
   &_actions {
     display: flex;
     justify-content: space-between;

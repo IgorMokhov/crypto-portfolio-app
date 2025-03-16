@@ -1,20 +1,20 @@
 import { useAppSelector } from '../../redux/hooks';
-import { selectCurrencies } from '../../redux/slices/portfolio/portfolioSlice';
+import { selectAvailableCurrencies } from '../../redux/slices/portfolio/portfolioSlice';
 import { AvailableCurrencyItem } from '../AvailableCurrencyItem/AvailableCurrencyItem';
+import { ICurrency } from '../../types/currencies';
 import styles from './AvailableCurrencyList.module.scss';
 
-export const AvailableCurrencyList = () => {
-  const currencies = useAppSelector(selectCurrencies);
+interface AvailableCurrencyListProps {
+  onSave: (currency: ICurrency) => void;
+}
+
+export const AvailableCurrencyList = ({ onSave }: AvailableCurrencyListProps) => {
+  const currencies = useAppSelector(selectAvailableCurrencies);
 
   return (
     <ul className={styles.currencyList}>
-      {currencies?.map(({ name, price, priceChange }) => (
-        <AvailableCurrencyItem
-          name={name}
-          price={price}
-          priceChange={priceChange}
-          key={name}
-        />
+      {currencies?.map((currency) => (
+        <AvailableCurrencyItem {...currency} onSave={onSave} key={currency.name} />
       ))}
     </ul>
   );

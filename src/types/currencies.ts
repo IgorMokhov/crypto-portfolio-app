@@ -9,4 +9,5 @@ export interface ICurrency {
   name: string;
   price: number;
   priceChange: number;
+  quantity?: number;
 }
