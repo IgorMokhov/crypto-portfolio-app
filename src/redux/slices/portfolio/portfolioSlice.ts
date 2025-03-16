@@ -4,10 +4,12 @@ import { RootState } from '../../store';
 
 interface IPortfolioState {
   availableCurrencies: ICurrency[] | null;
+  selectedCurrencies: ICurrency[] | [];
 }
 
 const initialState: IPortfolioState = {
   availableCurrencies: null,
+  selectedCurrencies: [],
 };
 
 export const PortfolioSlice = createSlice({
@@ -17,10 +19,13 @@ export const PortfolioSlice = createSlice({
     setAvailableCurrencies: (state, action: PayloadAction<ICurrency[]>) => {
       state.availableCurrencies = action.payload;
     },
+    addSelectedCurrency: (state, action: PayloadAction<ICurrency>) => {
+      state.selectedCurrencies = [...state.selectedCurrencies, action.payload];
+    },
   },
 });
 
-export const { setAvailableCurrencies } = PortfolioSlice.actions;
+export const { setAvailableCurrencies, addSelectedCurrency } = PortfolioSlice.actions;
 export const portfolioReducer = PortfolioSlice.reducer;
-export const selectCurrencies = (state: RootState) =>
-  state.portfolio.availableCurrencies;
+export const selectAvailableCurrencies = (state: RootState) => state.portfolio.availableCurrencies;
+export const selectSavedCurrencies = (state: RootState) => state.portfolio.selectedCurrencies
