@@ -6,7 +6,7 @@ export interface IBinanceCurrency {
 
 export interface ICurrency {
   symbol: string;
-  name?: string;
+  name: string;
   price: number;
   priceChange: number;
   quantity?: number;

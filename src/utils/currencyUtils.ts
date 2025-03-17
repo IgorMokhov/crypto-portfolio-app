@@ -10,3 +10,13 @@ export const transformAvailableCurrencies = (currencies: IBinanceCurrency[]): IC
       priceChange: parseFloat(priceChangePercent),
     }));
 };
+
+export const filterCurrenciesByName = (
+  search: string,
+  currencies: ICurrency[] | null
+): ICurrency[] | [] => {
+  if (!currencies) return [];
+  if (!search.trim()) return currencies;
+
+  return currencies.filter(({ name }) => name.toLowerCase().includes(search.trim().toLowerCase()));
+};
