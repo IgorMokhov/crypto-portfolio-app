@@ -1,0 +1,6 @@
+.currencyHeader {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+  margin-bottom: 30px;
+}
