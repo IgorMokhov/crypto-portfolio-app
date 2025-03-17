@@ -1,14 +1,12 @@
 import { IBinanceCurrency, ICurrency } from '../types/currencies';
 
-export const transformAvailableCurrencies = (
-  currencies: IBinanceCurrency[]
-): ICurrency[] => {
+export const transformAvailableCurrencies = (currencies: IBinanceCurrency[]): ICurrency[] => {
   return currencies
-    .filter((currency) => currency.symbol.endsWith('USDT'))
-    .map((filteredCurrency) => ({
-      symbol: filteredCurrency.symbol,
-      name: filteredCurrency.symbol.replace('USDT', ''),
-      price: +filteredCurrency.lastPrice,
-      priceChange: +filteredCurrency.priceChangePercent,
+    .filter(({ symbol, lastPrice }) => symbol.endsWith('USDT') && +lastPrice > 0)
+    .map(({ symbol, lastPrice, priceChangePercent }) => ({
+      symbol: symbol,
+      name: symbol.replace('USDT', ''),
+      price: parseFloat(lastPrice),
+      priceChange: parseFloat(priceChangePercent),
     }));
 };
