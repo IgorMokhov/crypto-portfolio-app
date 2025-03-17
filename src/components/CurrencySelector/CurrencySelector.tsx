@@ -43,7 +43,7 @@ export const CurrencySelector = () => {
     <div className={styles.currencySelector}>
       <Input value={search} onChange={handleSearchChange} type="text" placeholder="Поиск валюты" />
 
-      <AvailableCurrencyList onSave={setActiveCurrency} />
+      <AvailableCurrencyList search={search} onSave={setActiveCurrency} />
 
       {activeCurrency && (
         <>

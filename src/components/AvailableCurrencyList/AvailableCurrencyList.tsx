@@ -3,17 +3,19 @@ import { selectAvailableCurrencies } from '../../redux/slices/portfolio/portfoli
 import { AvailableCurrencyItem } from '../AvailableCurrencyItem/AvailableCurrencyItem';
 import { ICurrency } from '../../types/currencies';
 import styles from './AvailableCurrencyList.module.scss';
+import { filterCurrenciesByName } from '../../utils/currencyUtils';
 
 interface AvailableCurrencyListProps {
+  search: string;
   onSave: (currency: ICurrency) => void;
 }
 
-export const AvailableCurrencyList = ({ onSave }: AvailableCurrencyListProps) => {
+export const AvailableCurrencyList = ({ search, onSave }: AvailableCurrencyListProps) => {
   const currencies = useAppSelector(selectAvailableCurrencies);
 
   return (
     <ul className={styles.currencyList}>
-      {currencies?.map((currency) => (
+      {filterCurrenciesByName(search, currencies).map((currency) => (
         <AvailableCurrencyItem {...currency} onSave={onSave} key={currency.name} />
       ))}
     </ul>
