@@ -1,0 +1,11 @@
+.currencyList {
+  list-style-type: none;
+  max-height: 600px;
+  overflow-y: auto;
+
+  &_text {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 25px;
+  }
+}
