@@ -6,8 +6,18 @@ export interface IBinanceCurrency {
 
 export interface ICurrency {
   symbol: string;
-  name: string;
+  name?: string;
   price: number;
   priceChange: number;
   quantity?: number;
+}
+
+export interface IStreamCurrency {
+  s: string; // Symbol
+  c: string; // Last price
+  P: string; // Price change percent
+}
+
+export interface IStreamResponse {
+  data: IStreamCurrency;
 }
