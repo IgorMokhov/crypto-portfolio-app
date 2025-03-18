@@ -13,7 +13,7 @@ export const CurrencyHeader = () => {
   return (
     <ul className={styles.currencyHeader}>
       {titles.map((title) => (
-        <span>{title}</span>
+        <span key={title}>{title}</span>
       ))}
     </ul>
   );
