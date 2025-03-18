@@ -14,13 +14,12 @@ export const Portfolio = () => {
   const isOpen = useAppSelector(selectModal);
   const dispatch = useAppDispatch();
 
+  const { data: availableCurrencies, isSuccess, isError, error } = useGetAvailableCurrenciesQuery();
   const currencies = useCurrencyStream();
-
-  const { data, isSuccess, isError, error } = useGetAvailableCurrenciesQuery();
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setAvailableCurrencies(transformAvailableCurrencies(data)));
+      dispatch(setAvailableCurrencies(transformAvailableCurrencies(availableCurrencies)));
     }
   }, [isSuccess]);
 

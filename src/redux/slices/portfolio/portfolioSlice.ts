@@ -4,7 +4,7 @@ import { RootState } from '../../store';
 
 interface IPortfolioState {
   availableCurrencies: ICurrency[] | null;
-  selectedCurrencies: ICurrency[] | [];
+  selectedCurrencies: ICurrency[];
 }
 
 const initialState: IPortfolioState = {
@@ -20,7 +20,15 @@ export const PortfolioSlice = createSlice({
       state.availableCurrencies = action.payload;
     },
     addSelectedCurrency: (state, action: PayloadAction<ICurrency>) => {
-      state.selectedCurrencies = [...state.selectedCurrencies, action.payload];
+      const existingCurrency = state.selectedCurrencies.find(
+        (currency) => currency.symbol === action.payload.symbol
+      );
+      if (existingCurrency) {
+        existingCurrency.quantity =
+          (existingCurrency.quantity || 0) + (action.payload.quantity || 0);
+      } else {
+        state.selectedCurrencies.push(action.payload);
+      }
     },
     removeSelectedCurrency: (state, action: PayloadAction<string>) => {
       state.selectedCurrencies = state.selectedCurrencies.filter(
