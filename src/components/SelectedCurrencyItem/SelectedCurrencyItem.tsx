@@ -1,16 +1,19 @@
 import { ICurrency } from '../../types/currencies';
 import styles from './SelectedCurrencyItem.module.scss';
 
-interface ISelectedCurrencyItemProps extends ICurrency {}
+interface ISelectedCurrencyItemProps extends ICurrency {
+  onRemove: (name: string) => void;
+}
 
 export const SelectedCurrencyItem = ({
   name,
   quantity,
   price,
   priceChange,
+  onRemove,
 }: ISelectedCurrencyItemProps) => {
   return (
-    <li className={styles.currencyItem}>
+    <li className={styles.currencyItem} onClick={() => onRemove(name)}>
       <span>{name}</span>
       <span>{quantity}</span>
       <span>${price}</span>

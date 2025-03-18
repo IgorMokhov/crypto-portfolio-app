@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../redux/hooks';
+import { removeSelectedCurrency } from '../../redux/slices/portfolio/portfolioSlice';
 import { ICurrency } from '../../types/currencies';
 import { CurrencyHeader } from '../CurrencyHeader/CurrencyHeader';
 import { SelectedCurrencyItem } from '../SelectedCurrencyItem/SelectedCurrencyItem';
@@ -8,12 +10,22 @@ interface ISelectedCurrencyListProps {
 }
 
 export const SelectedCurrencyList = ({ currencies }: ISelectedCurrencyListProps) => {
+  const dispatch = useAppDispatch();
+
+  const currencyRemoveHandler = (name: string) => {
+    dispatch(removeSelectedCurrency(name));
+  };
+
   return currencies.length > 0 ? (
     <>
       <CurrencyHeader />
       <ul className={styles.currencyList}>
         {currencies.map((currency) => (
-          <SelectedCurrencyItem {...currency} key={currency.symbol} />
+          <SelectedCurrencyItem
+            {...currency}
+            onRemove={currencyRemoveHandler}
+            key={currency.symbol}
+          />
         ))}
       </ul>
     </>

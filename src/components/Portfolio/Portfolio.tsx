@@ -7,8 +7,8 @@ import { CurrencySelector } from '../CurrencySelector/CurrencySelector';
 import { setAvailableCurrencies } from '../../redux/slices/portfolio/portfolioSlice';
 import { transformAvailableCurrencies } from '../../utils/currencyUtils';
 import { useCurrencyStream } from '../../hooks/useCurrencyStream';
-import styles from './Portfolio.module.scss';
 import { SelectedCurrencyList } from '../SelectedCurrencyList/SelectedCurrencyList';
+import styles from './Portfolio.module.scss';
 
 export const Portfolio = () => {
   const isOpen = useAppSelector(selectModal);

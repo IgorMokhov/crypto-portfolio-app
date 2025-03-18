@@ -22,10 +22,16 @@ export const PortfolioSlice = createSlice({
     addSelectedCurrency: (state, action: PayloadAction<ICurrency>) => {
       state.selectedCurrencies = [...state.selectedCurrencies, action.payload];
     },
+    removeSelectedCurrency: (state, action: PayloadAction<string>) => {
+      state.selectedCurrencies = state.selectedCurrencies.filter(
+        (currency) => currency.name !== action.payload
+      );
+    },
   },
 });
 
-export const { setAvailableCurrencies, addSelectedCurrency } = PortfolioSlice.actions;
+export const { setAvailableCurrencies, addSelectedCurrency, removeSelectedCurrency } =
+  PortfolioSlice.actions;
 export const portfolioReducer = PortfolioSlice.reducer;
 export const selectAvailableCurrencies = (state: RootState) => state.portfolio.availableCurrencies;
-export const selectSavedCurrencies = (state: RootState) => state.portfolio.selectedCurrencies
+export const selectSavedCurrencies = (state: RootState) => state.portfolio.selectedCurrencies;

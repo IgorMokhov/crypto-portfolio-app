@@ -35,5 +35,7 @@ export const useCurrencyStream = () => {
     return () => socket.close();
   }, [symbols]);
 
-  return Object.values(currenciesData ?? []);
+  return Object.values(currenciesData || []).filter(({ symbol }) =>
+    symbols.some((s) => symbol.toLowerCase() === s)
+  );
 };
