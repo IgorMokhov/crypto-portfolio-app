@@ -36,6 +36,7 @@ export const PortfolioSlice = createSlice({
       state.selectedCurrencies = state.selectedCurrencies.filter(
         (currency) => currency.name !== action.payload
       );
+      saveToLocalStorage(state.selectedCurrencies);
     },
   },
 });
