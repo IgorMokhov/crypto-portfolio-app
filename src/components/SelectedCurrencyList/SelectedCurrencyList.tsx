@@ -10,6 +10,10 @@ interface ISelectedCurrencyListProps {
 }
 
 export const SelectedCurrencyList = ({ currencies }: ISelectedCurrencyListProps) => {
+  const totalPortfolioValue = currencies.reduce(
+    (sum, currency) => sum + currency.price * currency.quantity!,
+    0
+  );
   const dispatch = useAppDispatch();
 
   const currencyRemoveHandler = (name: string) => {
@@ -23,6 +27,7 @@ export const SelectedCurrencyList = ({ currencies }: ISelectedCurrencyListProps)
         {currencies.map((currency) => (
           <SelectedCurrencyItem
             {...currency}
+            totalPortfolioValue={totalPortfolioValue}
             onRemove={currencyRemoveHandler}
             key={currency.symbol}
           />
