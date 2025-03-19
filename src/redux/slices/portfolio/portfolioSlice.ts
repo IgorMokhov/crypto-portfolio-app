@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICurrency } from '../../../types/currencies';
 import { RootState } from '../../store';
+import { loadFromLocalStorage, saveToLocalStorage } from '../../../utils/currencyUtils';
 
 interface IPortfolioState {
   availableCurrencies: ICurrency[] | null;
@@ -9,7 +10,7 @@ interface IPortfolioState {
 
 const initialState: IPortfolioState = {
   availableCurrencies: null,
-  selectedCurrencies: [],
+  selectedCurrencies: loadFromLocalStorage(),
 };
 
 export const PortfolioSlice = createSlice({
@@ -29,6 +30,7 @@ export const PortfolioSlice = createSlice({
       } else {
         state.selectedCurrencies.push(action.payload);
       }
+      saveToLocalStorage(state.selectedCurrencies);
     },
     removeSelectedCurrency: (state, action: PayloadAction<string>) => {
       state.selectedCurrencies = state.selectedCurrencies.filter(

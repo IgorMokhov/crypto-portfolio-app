@@ -20,3 +20,21 @@ export const filterCurrenciesByName = (
 
   return currencies.filter(({ name }) => name.toLowerCase().includes(search.trim().toLowerCase()));
 };
+
+export const saveToLocalStorage = (selectedCurrencies: ICurrency[]) => {
+  try {
+    localStorage.setItem('selectedCurrencies', JSON.stringify(selectedCurrencies));
+  } catch (error) {
+    console.error('Ошибка сохранения в localStorage:', error);
+  }
+};
+
+export const loadFromLocalStorage = (): ICurrency[] => {
+  try {
+    const data = localStorage.getItem('selectedCurrencies');
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error('Ошибка загрузки из localStorage:', error);
+    return [];
+  }
+};
